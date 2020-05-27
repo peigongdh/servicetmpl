@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/golang/protobuf/ptypes"
-	uspb "github.com/jfeng45/servicetmpl/adapter/userclient/generatedclient"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
+
+	uspb "github.com/jfeng45/servicetmpl/adapter/userclient/generatedclient"
 )
 
 const (

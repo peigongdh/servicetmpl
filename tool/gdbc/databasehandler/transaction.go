@@ -10,7 +10,7 @@ func (cdt *SqlDBTx) Rollback() error {
 	return nil
 }
 
-//DB doesnt commit, do nothing here
+// DB doesnt commit, do nothing here
 func (cdt *SqlDBTx) Commit() error {
 	return nil
 }
@@ -49,7 +49,7 @@ func (sct *SqlConnTx) TxEnd(txFunc func() error) error {
 	return err
 }
 
-//*sql.Tx can't begin a transaction, transaction always begins with a *sql.DB
+// *sql.Tx can't begin a transaction, transaction always begins with a *sql.DB
 func (sct *SqlConnTx) TxBegin() (gdbc.SqlGdbc, error) {
 	return nil, nil
 }

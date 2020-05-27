@@ -1,6 +1,8 @@
 package userdataservicefactory
 
 import (
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container"
 	"github.com/jfeng45/servicetmpl/container/datastorefactory"
@@ -8,7 +10,6 @@ import (
 	"github.com/jfeng45/servicetmpl/dataservice"
 	"github.com/jfeng45/servicetmpl/dataservice/userdata/sqldb"
 	"github.com/jfeng45/servicetmpl/tool/gdbc"
-	"github.com/pkg/errors"
 )
 
 // sqlUserDataServiceFactory is a empty receiver for Build method

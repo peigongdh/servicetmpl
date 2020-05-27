@@ -4,9 +4,10 @@ package userclient
 
 import (
 	"github.com/golang/protobuf/ptypes"
+	"github.com/pkg/errors"
+
 	uspb "github.com/jfeng45/servicetmpl/adapter/userclient/generatedclient"
 	"github.com/jfeng45/servicetmpl/model"
-	"github.com/pkg/errors"
 )
 
 // GrpcToUser converts from grpc User type to domain Model user type

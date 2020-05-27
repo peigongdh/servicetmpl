@@ -1,13 +1,14 @@
 package dataservicefactory
 
 import (
+	"github.com/pkg/errors"
+	"google.golang.org/grpc"
+
 	"github.com/jfeng45/servicetmpl/adapter/cacheclient"
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container"
 	"github.com/jfeng45/servicetmpl/container/datastorefactory"
 	"github.com/jfeng45/servicetmpl/container/logger"
-	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 // cacheDataServiceFactory is a empty receiver for Build method
@@ -22,7 +23,7 @@ func (cdsf *cacheDataServiceFactory) Build(c container.Container, dataConfig *co
 		return nil, errors.Wrap(err, "")
 	}
 	cdg := cacheclient.CacheDataGrpc{grpcConn}
-	//logger.Log.Debug("udm:", udm.DB)
+	// logger.Log.Debug("udm:", udm.DB)
 
 	return &cdg, nil
 }

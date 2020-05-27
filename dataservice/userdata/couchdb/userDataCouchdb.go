@@ -3,11 +3,13 @@ package couchdb
 
 import (
 	"context"
+
 	"github.com/go-kivik/kivik"
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/container/logger"
 	"github.com/jfeng45/servicetmpl/dataservice"
 	"github.com/jfeng45/servicetmpl/model"
-	"github.com/pkg/errors"
 )
 
 const (
@@ -65,8 +67,8 @@ func (udc *UserDataCouchdb) Find(id int) (*model.User, error) {
 	return user, nil
 }
 
-//The simple version (no need for view) of Find() to get it work, it is kind cheating because it didn't use the parameter id.
-//func (udc *UserDataCouchdb) Find(id int) (*model.User, error) {
+// The simple version (no need for view) of Find() to get it work, it is kind cheating because it didn't use the parameter id.
+// func (udc *UserDataCouchdb) Find(id int) (*model.User, error) {
 //	_id :="80a9134c7dfa53f67f6be214e1000fa7"
 //	row, err :=udc.DB.Get(context.TODO(), _id)
 //	if err != nil {
@@ -78,7 +80,7 @@ func (udc *UserDataCouchdb) Find(id int) (*model.User, error) {
 //	}
 //	logger.Log.Debugf("user:", user)
 //	return &user, nil
-//}
+// }
 
 func (udc *UserDataCouchdb) Remove(username string) (int64, error) {
 

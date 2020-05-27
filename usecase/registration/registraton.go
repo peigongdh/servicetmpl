@@ -5,9 +5,10 @@
 package registration
 
 import (
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/dataservice"
 	"github.com/jfeng45/servicetmpl/model"
-	"github.com/pkg/errors"
 )
 
 // RegistrationUseCase implements RegistrationUseCaseInterface.
@@ -44,7 +45,7 @@ func (ruc *RegistrationUseCase) ModifyUser(user *model.User) error {
 
 func (ruc *RegistrationUseCase) isDuplicate(name string) (bool, error) {
 	user, err := ruc.UserDataInterface.FindByName(name)
-	//logger.Log.Debug("isDuplicate() user:", user)
+	// logger.Log.Debug("isDuplicate() user:", user)
 	if err != nil {
 		return false, errors.Wrap(err, "")
 	}

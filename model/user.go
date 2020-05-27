@@ -6,8 +6,9 @@
 package model
 
 import (
-	"github.com/go-ozzo/ozzo-validation"
 	"time"
+
+	"github.com/go-ozzo/ozzo-validation"
 )
 
 // User has a name, department and created date. Name and created are required, department is optional.
@@ -27,7 +28,7 @@ func (u User) Validate() error {
 		validation.Field(&u.Created, validation.Required))
 }
 
-//ValidatePersisted validate a user that has been persisted to database, basically Id is not empty
+// ValidatePersisted validate a user that has been persisted to database, basically Id is not empty
 func (u User) ValidatePersisted() error {
 	return validation.ValidateStruct(&u,
 		validation.Field(&u.Id, validation.Required),

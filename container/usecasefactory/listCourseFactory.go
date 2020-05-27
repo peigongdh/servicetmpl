@@ -1,10 +1,11 @@
 package usecasefactory
 
 import (
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container"
 	"github.com/jfeng45/servicetmpl/usecase/listcourse"
-	"github.com/pkg/errors"
 )
 
 type ListCourseFactory struct{}

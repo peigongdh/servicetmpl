@@ -1,11 +1,12 @@
 package dataservicefactory
 
 import (
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container"
 	"github.com/jfeng45/servicetmpl/container/dataservicefactory/userdataservicefactory"
 	"github.com/jfeng45/servicetmpl/container/logger"
-	"github.com/pkg/errors"
 )
 
 // userDataServiceFactory is a empty receiver for Build method
@@ -20,4 +21,3 @@ func (udsfw *userDataServiceFactoryWrapper) Build(c container.Container, dataCon
 	}
 	return udsi, nil
 }
-

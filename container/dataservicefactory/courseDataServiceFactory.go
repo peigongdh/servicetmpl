@@ -1,6 +1,8 @@
 package dataservicefactory
 
 import (
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container"
 	"github.com/jfeng45/servicetmpl/container/datastorefactory"
@@ -9,7 +11,6 @@ import (
 	"github.com/jfeng45/servicetmpl/dataservice/coursedata/couchdb"
 	"github.com/jfeng45/servicetmpl/dataservice/coursedata/sqldb"
 	"github.com/jfeng45/servicetmpl/tool/gdbc"
-	"github.com/pkg/errors"
 )
 
 var courseDataServiceMap = map[string]dataservice.CourseDataInterface{

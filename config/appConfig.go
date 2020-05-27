@@ -5,9 +5,10 @@ package config
 
 import (
 	"fmt"
+	"io/ioutil"
+
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
-	"io/ioutil"
 )
 
 // AppConfig represents the application config

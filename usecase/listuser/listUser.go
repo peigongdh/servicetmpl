@@ -2,11 +2,13 @@
 package listuser
 
 import (
+	"strconv"
+
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/container/logger"
 	"github.com/jfeng45/servicetmpl/dataservice"
 	"github.com/jfeng45/servicetmpl/model"
-	"github.com/pkg/errors"
-	"strconv"
 )
 
 // ListUserUseCase implements ListUseCaseInterface.
@@ -24,13 +26,13 @@ func (luc *ListUserUseCase) ListUser() ([]model.User, error) {
 func (luc *ListUserUseCase) Find(id int) (*model.User, error) {
 	users, err := luc.getFromCache(strconv.Itoa(id))
 	if err != nil {
-		//not found in cache and continue
+		// not found in cache and continue
 		logger.Log.Errorf("get from cache error:", err)
-		//return nil, errors.Wrap(err, "")
+		// return nil, errors.Wrap(err, "")
 	}
 	if users != nil {
-		//here should return the results from cache, however, right now the cache doesn't store user info,
-		//so, just call find(id). This is not real code. Please replace it with real code
+		// here should return the results from cache, however, right now the cache doesn't store user info,
+		// so, just call find(id). This is not real code. Please replace it with real code
 		return luc.UserDataInterface.Find(id)
 	}
 	return luc.UserDataInterface.Find(id)

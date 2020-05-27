@@ -7,6 +7,7 @@ package gdbc
 import (
 	"context"
 	"database/sql"
+
 	"github.com/go-kivik/kivik"
 )
 

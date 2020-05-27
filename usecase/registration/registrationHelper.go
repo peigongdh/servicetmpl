@@ -1,14 +1,16 @@
 package registration
 
 import (
+	"strconv"
+
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/dataservice"
 	"github.com/jfeng45/servicetmpl/model"
-	"github.com/pkg/errors"
-	"strconv"
 )
 
 func modifyUser(udi dataservice.UserDataInterface, user *model.User) error {
-	//loggera.Log.Debug("modifyUser")
+	// loggera.Log.Debug("modifyUser")
 	err := user.ValidatePersisted()
 	if err != nil {
 		return errors.Wrap(err, "user validation failed")
@@ -44,7 +46,7 @@ func unregisterUser(udi dataservice.UserDataInterface, username string) error {
 // It needs to be written in a way that every error will be returned so it can be catched by TxEnd() function,
 // which will handle commit and rollback
 func modifyAndUnregister(ruc *RegistrationUseCase, user *model.User) error {
-	//loggera.Log.Debug("modifyAndUnregister")
+	// loggera.Log.Debug("modifyAndUnregister")
 	udi := ruc.UserDataInterface
 	err := modifyUser(udi, user)
 	if err != nil {

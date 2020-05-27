@@ -1,9 +1,10 @@
 package loggerfactory
 
 import (
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container/loggerfactory/logrus"
-	"github.com/pkg/errors"
 )
 
 // receiver for logrus factory

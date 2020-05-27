@@ -2,13 +2,15 @@ package datastorefactory
 
 import (
 	"context"
+
 	couchdbKivid "github.com/go-kivik/couchdb"
 	"github.com/go-kivik/kivik"
-	//"github.com/flimzy/kivik"
+	"github.com/pkg/errors"
+
+	// "github.com/flimzy/kivik"
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container"
 	"github.com/jfeng45/servicetmpl/container/logger"
-	"github.com/pkg/errors"
 )
 
 // couchdbFactory is receiver for Build method
@@ -19,7 +21,7 @@ func (cf *couchdbFactory) Build(c container.Container, dsc *config.DataStoreConf
 	logger.Log.Debug("couchdbFactory")
 	key := dsc.Code
 
-	//if it is already in container, return
+	// if it is already in container, return
 	if value, found := c.Get(key); found {
 		logger.Log.Debug("found couchdb in container for key:", key)
 		return value.(*kivik.DB), nil

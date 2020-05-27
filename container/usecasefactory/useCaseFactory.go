@@ -7,7 +7,7 @@ import (
 	"github.com/jfeng45/servicetmpl/container"
 )
 
-//To map "use case code" to "use case interface builder"
+// To map "use case code" to "use case interface builder"
 // Each use case has exactly one factory. For example, "registration" use case has "RegistrationFactory"
 // Each factory has it's own file. For example, "RegistrationFactory" is in "registrationFactory.go"
 var UseCaseFactoryBuilderMap = map[string]UseCaseFbInterface{
@@ -25,7 +25,7 @@ type UseCaseFbInterface interface {
 	Build(c container.Container, appConfig *config.AppConfig, key string) (UseCaseInterface, error)
 }
 
-//GetDataStoreFb is accessors for factoryBuilderMap
+// GetDataStoreFb is accessors for factoryBuilderMap
 func GetUseCaseFb(key string) UseCaseFbInterface {
 	return UseCaseFactoryBuilderMap[key]
 }

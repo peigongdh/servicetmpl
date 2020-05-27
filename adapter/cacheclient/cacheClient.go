@@ -5,9 +5,11 @@ package cacheclient
 
 import (
 	"context"
+
+	"google.golang.org/grpc"
+
 	cspb "github.com/jfeng45/servicetmpl/adapter/cacheclient/generatedclient"
 	"github.com/jfeng45/servicetmpl/container/logger"
-	"google.golang.org/grpc"
 )
 
 // CacheDataGrpc represents the gRPC connection handler

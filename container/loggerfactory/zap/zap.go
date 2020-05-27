@@ -3,41 +3,43 @@ package zap
 
 import (
 	"encoding/json"
-	"github.com/jfeng45/servicetmpl/config"
-	"github.com/jfeng45/servicetmpl/container/logger"
+
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
+
+	"github.com/jfeng45/servicetmpl/config"
+	"github.com/jfeng45/servicetmpl/container/logger"
 )
 
-//type loggerWrapper struct {
+// type loggerWrapper struct {
 //	lw *zap.SugaredLogger
-//}
+// }
 //
 //
-//func (logger *loggerWrapper) Errorf(format string, args ...interface{}) {
+// func (logger *loggerWrapper) Errorf(format string, args ...interface{}) {
 //	logger.lw.Errorf(format, args)
-//}
-//func (logger *loggerWrapper) Fatalf(format string, args ...interface{}) {
+// }
+// func (logger *loggerWrapper) Fatalf(format string, args ...interface{}) {
 //	logger.lw.Fatalf(format, args)
-//}
-//func (logger *loggerWrapper) Fatal(args ...interface{}) {
+// }
+// func (logger *loggerWrapper) Fatal(args ...interface{}) {
 //	logger.lw.Fatal(args)
-//}
-//func (logger *loggerWrapper) Infof(format string, args ...interface{}) {
+// }
+// func (logger *loggerWrapper) Infof(format string, args ...interface{}) {
 //	logger.lw.Infof(format, args)
-//}
-//func (logger *loggerWrapper) Warnf(format string, args ...interface{}) {
+// }
+// func (logger *loggerWrapper) Warnf(format string, args ...interface{}) {
 //	logger.lw.Warnf(format, args)
-//}
-//func (logger *loggerWrapper) Debugf(format string, args ...interface{}) {
+// }
+// func (logger *loggerWrapper) Debugf(format string, args ...interface{}) {
 //	logger.lw.Debugf(format, args)
-//}
-//func (logger *loggerWrapper) Printf(format string, args ...interface{}) {
+// }
+// func (logger *loggerWrapper) Printf(format string, args ...interface{}) {
 //	logger.lw.Infof(format, args)
-//}
-//func (logger *loggerWrapper) Println(args ...interface{}) {
+// }
+// func (logger *loggerWrapper) Println(args ...interface{}) {
 //	logger.lw.Info(args, "\n")
-//}
+// }
 
 func RegisterLog(lc config.LogConfig) error {
 	zLogger, err := initLog(lc)
@@ -48,8 +50,8 @@ func RegisterLog(lc config.LogConfig) error {
 	zSugarlog := zLogger.Sugar()
 	zSugarlog.Info()
 
-	//This is for loggerWrapper implementation
-	//appLogger.SetLogger(&loggerWrapper{zaplog})
+	// This is for loggerWrapper implementation
+	// appLogger.SetLogger(&loggerWrapper{zaplog})
 
 	logger.SetLogger(zSugarlog)
 	return nil
@@ -81,11 +83,11 @@ func initLog(lc config.LogConfig) (zap.Logger, error) {
 
 	var cfg zap.Config
 	var zLogger *zap.Logger
-	//standard configuration
+	// standard configuration
 	if err := json.Unmarshal(rawJSON, &cfg); err != nil {
 		return *zLogger, errors.Wrap(err, "Unmarshal")
 	}
-	//customize it from configuration file
+	// customize it from configuration file
 	err := customizeLogFromConfig(&cfg, lc)
 	if err != nil {
 		return *zLogger, errors.Wrap(err, "cfg.Build()")

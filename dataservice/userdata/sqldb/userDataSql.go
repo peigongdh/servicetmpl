@@ -3,14 +3,16 @@ package sqldb
 
 import (
 	"database/sql"
+	"time"
+
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/container/logger"
 	"github.com/jfeng45/servicetmpl/dataservice"
 	"github.com/jfeng45/servicetmpl/model"
 	"github.com/jfeng45/servicetmpl/tool"
 	"github.com/jfeng45/servicetmpl/tool/gdbc"
-	"github.com/pkg/errors"
-	"time"
 )
 
 const (
@@ -79,7 +81,7 @@ func rowsToUser(rows *sql.Rows) (*model.User, error) {
 	return user, nil
 }
 func (uds *UserDataSql) FindByName(name string) (*model.User, error) {
-	//logger.Log.Debug("call FindByName() and name is:", name)
+	// logger.Log.Debug("call FindByName() and name is:", name)
 	rows, err := uds.DB.Query(QUERY_USER_BY_NAME, name)
 	if err != nil {
 		return nil, errors.Wrap(err, "")
@@ -97,7 +99,7 @@ func (uds *UserDataSql) FindAll() ([]model.User, error) {
 	defer rows.Close()
 	users := []model.User{}
 
-	//var ds string
+	// var ds string
 	for rows.Next() {
 		user, err := rowsToUser(rows)
 		if err != nil {
@@ -106,7 +108,7 @@ func (uds *UserDataSql) FindAll() ([]model.User, error) {
 		users = append(users, *user)
 
 	}
-	//need to check error for rows.Next()
+	// need to check error for rows.Next()
 	if err = rows.Err(); err != nil {
 		return nil, errors.Wrap(err, "")
 	}

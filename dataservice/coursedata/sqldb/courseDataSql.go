@@ -2,11 +2,13 @@ package sqldb
 
 import (
 	"database/sql"
+
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/container/logger"
 	"github.com/jfeng45/servicetmpl/model"
 	"github.com/jfeng45/servicetmpl/tool/gdbc"
-	"github.com/pkg/errors"
 )
 
 const (
@@ -31,7 +33,7 @@ func (cds *CourseDataSql) FindAll() ([]model.Course, error) {
 	defer rows.Close()
 	courses := []model.Course{}
 
-	//var ds string
+	// var ds string
 	for rows.Next() {
 		course, err := rowsToCourse(rows)
 		if err != nil {
@@ -40,7 +42,7 @@ func (cds *CourseDataSql) FindAll() ([]model.Course, error) {
 		courses = append(courses, *course)
 
 	}
-	//need to check error for rows.Next()
+	// need to check error for rows.Next()
 	if err = rows.Err(); err != nil {
 		return nil, errors.Wrap(err, "")
 	}

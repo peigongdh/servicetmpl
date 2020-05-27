@@ -2,6 +2,10 @@ package main
 
 import (
 	"fmt"
+	"time"
+
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/config"
 	"github.com/jfeng45/servicetmpl/container"
 	"github.com/jfeng45/servicetmpl/container/logger"
@@ -9,8 +13,6 @@ import (
 	"github.com/jfeng45/servicetmpl/model"
 	"github.com/jfeng45/servicetmpl/tool"
 	"github.com/jfeng45/servicetmpl/usecase"
-	"github.com/pkg/errors"
-	"time"
 )
 
 const (
@@ -20,7 +22,7 @@ const (
 
 func main() {
 	testMySql()
-	//testCouchDB()
+	// testCouchDB()
 }
 
 func testMySql() {
@@ -46,7 +48,7 @@ func testCouchDB() {
 	container, err := buildContainer(filename)
 	if err != nil {
 		fmt.Printf("%+v\n", err)
-		//logger.Log.Errorf("%+v\n", err)
+		// logger.Log.Errorf("%+v\n", err)
 		return
 	}
 	testFindById(container)
@@ -105,7 +107,7 @@ func testModifyUser(container container.Container) {
 }
 
 func testListUser(container container.Container) {
-	//rluf, err := container.RetrieveListUser()
+	// rluf, err := container.RetrieveListUser()
 	rluf, err := getListUserUseCase(container)
 	if err != nil {
 		logger.Log.Fatal("RetrieveListUser interface build failed:", err)
@@ -154,9 +156,9 @@ func testModifyAndUnregisterWithTx(container container.Container) {
 }
 
 func testFindById(container container.Container) {
-	//It is uid in database. Make sure you have it in database, otherwise it won't find it.
+	// It is uid in database. Make sure you have it in database, otherwise it won't find it.
 	id := 12
-	//rluf, err := container.RetrieveListUser()
+	// rluf, err := container.RetrieveListUser()
 	rluf, err := getListUserUseCase(container)
 	if err != nil {
 		logger.Log.Fatalf("RetrieveListUser interface build failed:%+v\n", err)
@@ -185,7 +187,7 @@ func getListUserUseCase(c container.Container) (usecase.ListUserUseCaseInterface
 	key := config.LIST_USER
 	value, err := c.BuildUseCase(key)
 	if err != nil {
-		//logger.Log.Errorf("%+v\n", err)
+		// logger.Log.Errorf("%+v\n", err)
 		return nil, errors.Wrap(err, "")
 	}
 	return value.(usecase.ListUserUseCaseInterface), nil
@@ -205,7 +207,7 @@ func getRegistrationUseCase(c container.Container) (usecase.RegistrationUseCaseI
 	key := config.REGISTRATION
 	value, err := c.BuildUseCase(key)
 	if err != nil {
-		//logger.Log.Errorf("%+v\n", err)
+		// logger.Log.Errorf("%+v\n", err)
 		return nil, errors.Wrap(err, "")
 	}
 	return value.(usecase.RegistrationUseCaseInterface), nil
@@ -219,7 +221,7 @@ func buildContainer(filename string) (container.Container, error) {
 
 	err := container.InitApp(filename)
 	if err != nil {
-		//logger.Log.Errorf("%+v\n", err)
+		// logger.Log.Errorf("%+v\n", err)
 		return nil, errors.Wrap(err, "")
 	}
 	return &container, nil

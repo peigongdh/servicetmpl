@@ -3,6 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"net"
+
+	"github.com/pkg/errors"
+	"google.golang.org/grpc"
+
 	"github.com/jfeng45/servicetmpl/adapter/userclient"
 	uspb "github.com/jfeng45/servicetmpl/adapter/userclient/generatedclient"
 	"github.com/jfeng45/servicetmpl/config"
@@ -10,9 +15,6 @@ import (
 	"github.com/jfeng45/servicetmpl/container/logger"
 	"github.com/jfeng45/servicetmpl/container/servicecontainer"
 	"github.com/jfeng45/servicetmpl/usecase"
-	"github.com/pkg/errors"
-	"google.golang.org/grpc"
-	"net"
 )
 
 const (
@@ -97,7 +99,7 @@ func runServer(sc *servicecontainer.ServiceContainer) error {
 
 	cs := &UserService{sc}
 	uspb.RegisterUserServiceServer(srv, cs)
-	//l, err:=net.Listen(GRPC_NETWORK, GRPC_ADDRESS)
+	// l, err:=net.Listen(GRPC_NETWORK, GRPC_ADDRESS)
 	ugc := sc.AppConfig.UserGrpcConfig
 	logger.Log.Debugf("userGrpcConfig: %+v\n", ugc)
 	l, err := net.Listen(ugc.DriverName, ugc.UrlAddress)
@@ -111,11 +113,11 @@ func runServer(sc *servicecontainer.ServiceContainer) error {
 
 func main() {
 	filename := DEV_CONFIG
-	//filename := PROD_CONFIG
+	// filename := PROD_CONFIG
 	container, err := buildContainer(filename)
 	if err != nil {
 		fmt.Printf("%+v\n", err)
-		//logger.Log.Errorf("%+v\n", err)
+		// logger.Log.Errorf("%+v\n", err)
 		panic(err)
 	}
 	if err := runServer(container); err != nil {
@@ -142,7 +144,7 @@ func getListUserUseCase(c container.Container) (usecase.ListUserUseCaseInterface
 	key := config.LIST_USER
 	value, err := c.BuildUseCase(key)
 	if err != nil {
-		//logger.Log.Errorf("%+v\n", err)
+		// logger.Log.Errorf("%+v\n", err)
 		return nil, errors.Wrap(err, "")
 	}
 	return value.(usecase.ListUserUseCaseInterface), nil

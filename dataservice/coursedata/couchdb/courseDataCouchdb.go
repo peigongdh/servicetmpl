@@ -12,7 +12,7 @@ const (
 // CourseDataCouchdb is the NoSQL implementation of CourseDatainterface
 type CourseDataCouchdb struct {
 	DB gdbc.NoSqlGdbc
-	//DB string
+	// DB string
 }
 
 func (cdc *CourseDataCouchdb) FindAll() ([]model.Course, error) {

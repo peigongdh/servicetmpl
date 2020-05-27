@@ -1,10 +1,11 @@
 package servicecontainer
 
 import (
+	"github.com/pkg/errors"
+
 	"github.com/jfeng45/servicetmpl/config"
 	logFactory "github.com/jfeng45/servicetmpl/container/loggerfactory"
 	"github.com/jfeng45/servicetmpl/container/usecasefactory"
-	"github.com/pkg/errors"
 )
 
 type ServiceContainer struct {

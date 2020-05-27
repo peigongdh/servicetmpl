@@ -11,7 +11,6 @@ import (
 	"github.com/jfeng45/servicetmpl/container"
 )
 
-
 // To map "database code" to "database interface builder"
 // Concreate builder is in corresponding factory file. For example, "sqlFactory" is in "sqlFactory".go
 var dsFbMap = map[string]dsFbInterface{
@@ -29,7 +28,7 @@ type dsFbInterface interface {
 	Build(container.Container, *config.DataStoreConfig) (DataStoreInterface, error)
 }
 
-//GetDataStoreFb is accessors for factoryBuilderMap
+// GetDataStoreFb is accessors for factoryBuilderMap
 func GetDataStoreFb(key string) dsFbInterface {
 	return dsFbMap[key]
 }
